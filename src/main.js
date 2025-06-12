@@ -46,7 +46,7 @@ function getImagesByQuery(query) {
     orientation: 'horizontal',
     safesearch: true,
   });
-  axios(`https://pixabay.com/api?${params}`)
+  axios(`https://pixabay.com/api/?${params}`)
     .then(({ data }) => {
       if (data.hits.length > 0) {
         createGallery(data.hits);
