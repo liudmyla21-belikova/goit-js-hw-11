@@ -12,7 +12,7 @@ export function createGallery(images) {
       image => `
       <li class="gallery-item">
       <a href="${image.largeImageURL}">
-      <img src="${image.webformatURL}" alt="${image.tags}" />
+      <img class="img" src="${image.webformatURL}" alt="${image.tags}" />
       </a>
       <div class="wrapper">
      <p class="text">Likes<span class="span">${image.likes}</span></p>

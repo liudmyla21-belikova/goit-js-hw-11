@@ -149,10 +149,10 @@
   position: relative;
 }
 
-.image {
+.img {
   width: 360px;
   height: 200px;
-  border: 1px solid #808080;
+  border-radius: 7px;
 }
 
 .wrapper {
