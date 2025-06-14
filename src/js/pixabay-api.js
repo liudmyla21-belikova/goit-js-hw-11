@@ -10,5 +10,12 @@ export function getImagesByQuery(query) {
     orientation: 'horizontal',
     safesearch: true,
   });
-  return axios(`https://pixabay.com/api/?${params}`);
+  return axios.get(`https://pixabay.com/api/?${params}`).then(({ data }) => {
+    if (data.hits.length === 0) {
+      throw new Error(
+        'Sorry, there are no images matching your search query. Please try again!'
+      );
+    }
+    return data;
+  });
 }

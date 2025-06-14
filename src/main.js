@@ -14,30 +14,31 @@ const input = document.querySelector('input[name="search-text"]');
 
 form.addEventListener('submit', handleSubmit);
 
+hideLoader();
+
 function handleSubmit(event) {
   event.preventDefault();
-
+  clearGallery();
+  showLoader();
   const query = input.value.trim();
 
   if (!query) {
     iziToast.warning({
       message: 'Please enter a search query',
     });
+    hideLoader();
     return;
   }
 
-  clearGallery();
-  showLoader();
-
   getImagesByQuery(query)
-    .then(({ data }) => {
-      if (data.hits.length > 0) {
-        createGallery(data.hits);
-      } else {
+    .then(data => {
+      if (data.hits.length === 0) {
         iziToast.info({
           message: 'Sorry, there are no images matching your search query.',
         });
+        return;
       }
+      createGallery(data.hits);
     })
     .catch(error => {
       iziToast.error({
@@ -47,5 +48,6 @@ function handleSubmit(event) {
     })
     .finally(() => {
       hideLoader();
+      form.reset();
     });
 }
